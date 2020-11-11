@@ -20,6 +20,7 @@ contract stake{
 
     function withdraw() public {
         uint balance = t.balanceOf(msg.sender);
+        require(balance>0, "Eth funds are still staked");
         uint EthToReceive = EthToReceive(balance);
         t.burnE2(msg.sender,balance);
         msg.sender.transfer(EthToReceive);
